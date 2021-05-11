@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express',author: 'Diana Ivonne', appName: 'WebApp', company: 'Awsom Software' });
+  res.render('index', { title: 'Express',author: 'Diana Ivonne Abad Bautista', appName: 'WebApp', company: 'Awsom Software' });
 });
 
 
