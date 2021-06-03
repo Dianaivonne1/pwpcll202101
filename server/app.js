@@ -1,33 +1,36 @@
 /* eslint-disable no-console */
-import createError from "http-errors";
-import express from "express";
-import path from "path";
-import cookieParser from "cookie-parser";
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
 import logger from "morgan";
 
 import indexRouter from '@s-routes/index';
 import usersRouter from '@s-routes/users';
 
+// Importing configurations
+import configTemplateEngine from '@s-config/template-engine';
+
 // Webpack Modules
-import webpack from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import webpackDevConfig from "../webpack.dev.config";
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevConfig from '../webpack.dev.config';
 
 // Consultar el modo en que se esta ejecutando la aplicacion 
-const env = process.env.NODE_ENV || "developement";
+const env = process.env.NODE_ENV || 'developement';
 
 // Se crea la aplicacion express
 const app = express();
 
 // Verificando el modo de ejecucion de la aplicacion 
-if (env === "development") {
-  console.log("> Excecuting in Development Mode: Webpack Hot Reloading");
+if (env === 'development'){
+  console.log('> Excecuting in Development Mode: Webpack Hot Reloading');
   // Paso 1. Agregando la ruta del HMR
   // reload=true: Habilita la recarga del frontend cuando hay cambios en el codigo fuente del frontend
   // timeout=1000: Tiempo de espera entre recarga  y recarga de la pagina 
   webpackDevConfig.entry = [
-    "webpack-hot-middleware/client?reload=true&timeout=1000",
+    'webpack-hot-middleware/client?reload=true&timeout=1000',
     webpackDevConfig.entry,
   ];
 
@@ -51,8 +54,7 @@ if (env === "development") {
 }
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+configTemplateEngine(app);
 
 app.use(logger("dev"));
 app.use(express.json());
