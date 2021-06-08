@@ -1,6 +1,5 @@
 // Importando a winston
-import winston, {format} from winston;  
-import winston, { format } from winston;
+import winston, { format } from 'winston';
 import appRoot from 'app-root-path';
 
 
