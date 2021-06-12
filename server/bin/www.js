@@ -13,7 +13,7 @@ const debug = Debug('projnotes:server');
 /**
  * Normalize a port into a number, string, or false.
  */
- function normalizePort(val) {
+function normalizePort(val) {
   const port = parseInt(val, 10);
 
   if (Number.isNaN(port)) {
